@@ -14,13 +14,17 @@ function get_username() {
 
 function get_cpt_version() {
   const version = core.getInput('install');
-  let result = "conan_package_tools";
+  const cpt = "conan_package_tools";
   if ("no" == version) {
     return null;
-  } if ("latest" != version) {
-    result = `${result}==${version}`;
   }
-  return result;
+  if ("latest" == version) {
+    return cpt;
+  }
+  if ("custom" == version) {
+    return core.getInput('custom-package');
+  }
+  return `${cpt}==${version}`;
 };
 
 

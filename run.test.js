@@ -32,7 +32,7 @@ describe('with default install input', () => {
 })
 
 
-describe('with custon install input', () => {
+describe('with install version input', () => {
   beforeAll(() => { process.env.INPUT_INSTALL = "1.20.0"; });
 
   test('get_cpt_version', () => {
@@ -40,6 +40,23 @@ describe('with custon install input', () => {
   });
 
   afterAll(() => { delete process.env.INPUT_INSTALL; });
+})
+
+
+describe('with custom installation input', () => {
+  beforeAll(() => {
+    process.env.INPUT_INSTALL = "custom";
+    process.env['INPUT_CUSTOM-PACKAGE'] = "git://foo.bar/baz.git";
+  });
+
+  test('get_cpt_version', () => {
+    expect(run.get_cpt_version()).toBe("git://foo.bar/baz.git");
+  });
+
+  afterAll(() => {
+    delete process.env.INPUT_INSTALL;
+    delete process.env['INPUT_CUSTOM-PACKAGE'];
+  });
 })
 
 

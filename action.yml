@@ -17,6 +17,10 @@ inputs:
     description: what version of conan_package_tools to install
     required: false
     default: latest
+  custom-package:
+    description: package to install instead of conan_package_tools==xxx, if 'install' is set to 'custom'
+    required: false
+    default:
   compiler:
     description: Compiler to use. Empty string if you set compiler version via env vars. One of ['gcc', 'apple_clang', 'vs'] otherwise.
     required: false

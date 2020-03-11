@@ -41,9 +41,17 @@ Change a current working directory to the defined in this variable. The build-sc
 will be run from this directory. Defaults to empty string, that is:
 do not change the working directory.
 install::
-Install conan_package_tools before running the build script if the value is not
-`no`. If the value is `latest` install the latest version, otherwise install
-the version equal to that value. `latest` by default.
+Install conan_package_tools before running the build script. Available options:
+* `latest` will install the latest version
+* `custom` will install the package provided via `custom-package` parameter.
+* `no` will skip the package installation
+
+Defaults to `latest`.
+
+custom-package::
+Custom name/URL of the package to use with `install: custom`. Can be used to install some fork or any other package instead of the official CPT:
+like `git+https://repo.com/forked-cpt.git` or `mycompany-cpt==0.32`.
+
 
 The following parameters allow you to customize conan and conan_package_tools behaviour. It is conrolled by environment variables and there is no way to undefine a variable from a workflow file after it was set. For example, you cannot set CONAN_DOCKER_IMAGE and then unset it. This does not allow you to use strategy.matrix to run several jobs based on variables. With these parameters you can setup the behaviour without using environment variables from a workflow file. Values from these parameters override the values of the corresponding environment variables, so you can setup default environment variables and modify the behaviour of a conan for some jobs/steps exclusivly.
 
